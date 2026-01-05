@@ -9,6 +9,7 @@
 #include "TestCharacter.generated.h"
 
 class UStatusAttributeSet;
+class UWidgetComponent;
 
 UCLASS()
 class KI7_UNREALGAS_API ATestCharacter : public ACharacter, public IAbilitySystemInterface
@@ -33,6 +34,7 @@ protected:
 
 private:
 	void OnHealthChange(const FOnAttributeChangeData& InData);
+	void OnManaChange(const FOnAttributeChangeData& InData);
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Test")
@@ -41,6 +43,9 @@ public:
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Ability")
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent = nullptr;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component")
+	TObjectPtr<UWidgetComponent> BarWigetComponent = nullptr;
 	
 private:
 	UPROPERTY()
