@@ -30,6 +30,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void TestSetByCaller(float Amount);
 
+	UFUNCTION(BlueprintCallable)
+	void TestAddInfiniteEffect();
+
+	UFUNCTION(BlueprintCallable)
+	void TestRemoveInfiniteEffect();
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
@@ -48,6 +54,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Test")
 	TSubclassOf<class UGameplayEffect> TestEffectClass = nullptr;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Test")
+	TSubclassOf<class UGameplayEffect> TestInfiniteEffectClass = nullptr;
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Ability")
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent = nullptr;
@@ -60,4 +69,6 @@ private:
 	TObjectPtr<UResourceAttributeSet> ResourceAttributeSet = nullptr;
 
 	FGameplayTag Tag_EffectDamage;
+
+	FActiveGameplayEffectHandle TestInfinite;
 };

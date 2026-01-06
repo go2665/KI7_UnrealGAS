@@ -45,6 +45,31 @@ void ATestCharacter::TestSetByCaller(float Amount)
 	}
 }
 
+void ATestCharacter::TestAddInfiniteEffect()
+{
+	if (TestInfiniteEffectClass && AbilitySystemComponent)
+	{
+		FGameplayEffectContextHandle EffectContext = AbilitySystemComponent->MakeEffectContext();
+		EffectContext.AddInstigator(this, this);
+
+		FGameplayEffectSpecHandle SpecHandle = AbilitySystemComponent->MakeOutgoingSpec(
+			TestInfiniteEffectClass, 0, EffectContext);
+
+		if (SpecHandle.IsValid())
+		{
+			TestInfinite = AbilitySystemComponent->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
+		}
+	}
+}
+
+void ATestCharacter::TestRemoveInfiniteEffect()
+{
+	if (TestInfinite.IsValid())
+	{
+		AbilitySystemComponent->RemoveActiveGameplayEffect(TestInfinite);
+	}
+}
+
 // Called when the game starts or when spawned
 void ATestCharacter::BeginPlay()
 {
