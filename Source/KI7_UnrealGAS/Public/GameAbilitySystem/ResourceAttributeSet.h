@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "AttributeSet.h"
 #include "AbilitySystemComponent.h"
-#include "StatusAttributeSet.generated.h"
+#include "ResourceAttributeSet.generated.h"
 
 /**
  * 
@@ -19,29 +19,31 @@
 	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
 UCLASS()
-class KI7_UNREALGAS_API UStatusAttributeSet : public UAttributeSet
+class KI7_UNREALGAS_API UResourceAttributeSet : public UAttributeSet
 {
 	GENERATED_BODY()
 	
 public:
-	UStatusAttributeSet();
+	UResourceAttributeSet();
 
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
+
+	// Instant타입의 이팩트가 적용된 직후에만 호출(Duration이나 Intinite는 실행안됨)
 	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Attribute")
 	FGameplayAttributeData Health;
-	ATTRIBUTE_ACCESSORS(UStatusAttributeSet, Health)
+	ATTRIBUTE_ACCESSORS(UResourceAttributeSet, Health)
 
 	UPROPERTY(BlueprintReadOnly, Category = "Attribute")
 	FGameplayAttributeData MaxHealth;
-	ATTRIBUTE_ACCESSORS(UStatusAttributeSet, MaxHealth)
+	ATTRIBUTE_ACCESSORS(UResourceAttributeSet, MaxHealth)
 
 	UPROPERTY(BlueprintReadOnly, Category = "Attribute")
 	FGameplayAttributeData Mana;
-	ATTRIBUTE_ACCESSORS(UStatusAttributeSet, Mana)
+	ATTRIBUTE_ACCESSORS(UResourceAttributeSet, Mana)
 
 	UPROPERTY(BlueprintReadOnly, Category = "Attribute")
 	FGameplayAttributeData MaxMana;
-	ATTRIBUTE_ACCESSORS(UStatusAttributeSet, MaxMana)
+	ATTRIBUTE_ACCESSORS(UResourceAttributeSet, MaxMana)
 };

@@ -8,7 +8,7 @@
 #include "GameplayEffectTypes.h"
 #include "TestCharacter.generated.h"
 
-class UStatusAttributeSet;
+class UResourceAttributeSet;
 class UWidgetComponent;
 
 UCLASS()
@@ -34,7 +34,9 @@ protected:
 
 private:
 	void OnHealthChange(const FOnAttributeChangeData& InData);
+	void OnMaxHealthChange(const FOnAttributeChangeData& InData);
 	void OnManaChange(const FOnAttributeChangeData& InData);
+	void OnMaxManaChange(const FOnAttributeChangeData& InData);
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Test")
@@ -49,5 +51,5 @@ protected:
 	
 private:
 	UPROPERTY()
-	TObjectPtr<UStatusAttributeSet> StatusAttributeSet = nullptr;
+	TObjectPtr<UResourceAttributeSet> ResourceAttributeSet = nullptr;
 };
