@@ -31,6 +31,20 @@ void ATestCharacter::TestHealthChange(float Amount)
 	}
 }
 
+void ATestCharacter::TestSetByCaller(float Amount)
+{
+	if (AbilitySystemComponent)
+	{
+		FGameplayEffectContextHandle EffectContext = AbilitySystemComponent->MakeEffectContext();
+		FGameplayEffectSpecHandle SpecHandle = AbilitySystemComponent->MakeOutgoingSpec(TestEffectClass, 0, EffectContext);
+		if (SpecHandle.IsValid())
+		{
+			SpecHandle.Data->SetSetByCallerMagnitude(Tag_EffectDamage, Amount);
+			AbilitySystemComponent->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
+		}
+	}
+}
+
 // Called when the game starts or when spawned
 void ATestCharacter::BeginPlay()
 {
@@ -75,6 +89,8 @@ void ATestCharacter::BeginPlay()
 		//ResourceAttributeSet->Health = 50.0f;	// 절대 안됨
 		//ResourceAttributeSet->SetHealth(50.0f);	// 무조건 Setter로 변경해야 한다.
 	}
+
+	Tag_EffectDamage = FGameplayTag::RequestGameplayTag(FName("Effect.Damage"));
 }
 
 // Called every frame
