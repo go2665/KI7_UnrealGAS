@@ -12,7 +12,7 @@ void UBarWidget::SetProgressColor(FLinearColor InColor)
 
 void UBarWidget::UpdateCurrent_Implementation(float InValue)
 {
-	//UE_LOG(LogTemp, Log, TEXT("Current : %.1f"), InValue);
+	UE_LOG(LogTemp, Log, TEXT("Current : %.1f"), InValue);
 	Current->SetText(FText::AsNumber(FMath::RoundToInt(InValue)));
 	CurrentValue = InValue;
 	BackgroundProgressBar->SetPercent(CurrentValue /MaxValue);
@@ -20,7 +20,7 @@ void UBarWidget::UpdateCurrent_Implementation(float InValue)
 
 void UBarWidget::UpdateMax_Implementation(float InValue)
 {
-	//UE_LOG(LogTemp, Log, TEXT("Max : %.1f"), InValue);
+	UE_LOG(LogTemp, Log, TEXT("Max : %.1f"), InValue);
 	Max->SetText(FText::AsNumber(FMath::RoundToInt(InValue)));
 	MaxValue = InValue;
 	BackgroundProgressBar->SetPercent(CurrentValue / MaxValue);

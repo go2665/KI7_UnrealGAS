@@ -9,6 +9,7 @@
 #include "TestCharacter.generated.h"
 
 class UResourceAttributeSet;
+class UStatusAttributeSet;
 class UWidgetComponent;
 
 UCLASS()
@@ -57,6 +58,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Test")
 	TSubclassOf<class UGameplayEffect> TestInfiniteEffectClass = nullptr;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Initialize")
+	TSubclassOf<class UGameplayEffect> InitializeEffectClass = nullptr;
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Ability")
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent = nullptr;
@@ -67,6 +71,9 @@ protected:
 private:
 	UPROPERTY()
 	TObjectPtr<UResourceAttributeSet> ResourceAttributeSet = nullptr;
+
+	UPROPERTY()
+	TObjectPtr<UStatusAttributeSet> StatusAttributeSet = nullptr;
 
 	FGameplayTag Tag_EffectDamage;
 
