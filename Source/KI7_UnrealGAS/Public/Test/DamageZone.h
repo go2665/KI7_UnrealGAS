@@ -30,5 +30,6 @@ private:
 	void OnEndOverlap(AActor* OverlappedActor, AActor* OtherActor);
 
 private:
+	// ASC를 키값으로 한 적용된 이팩트 핸들 모음
 	TMap<class UAbilitySystemComponent*, FActiveGameplayEffectHandle> ActiveEffectHandles;
 };

@@ -4,6 +4,7 @@
 #include "Test/DamageZone.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
+#include "AbilitySystemInterface.h"
 
 // Sets default values
 ADamageZone::ADamageZone()
@@ -23,9 +24,13 @@ void ADamageZone::BeginPlay()
 
 void ADamageZone::OnBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
+	//UE_LOG(LogTemp, Log, TEXT("OnBeginOverlap : %s"), *OtherActor->GetActorLabel());
+
 	UAbilitySystemComponent* ASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OtherActor);
+	
 	if (ASC)
 	{
+		//UE_LOG(LogTemp, Log, TEXT("ASC OK : %s"), *OtherActor->GetActorLabel());
 		FGameplayEffectContextHandle ContextHandle = ASC->MakeEffectContext();
 		ContextHandle.AddInstigator(this, this);
 
@@ -48,6 +53,7 @@ void ADamageZone::OnBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
 
 void ADamageZone::OnEndOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
+	UE_LOG(LogTemp, Log, TEXT("OnEndOverlap : %s"), *OtherActor->GetActorLabel());
 	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OtherActor);
 
 	if (TargetASC)
