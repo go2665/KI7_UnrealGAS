@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "GameAbilitySystem/ResourceAttributeSet.h"
+#include "GameAbilitySystem/AttributeSet/ResourceAttributeSet.h"
 #include "GameplayEffectExtension.h"
 
 UResourceAttributeSet::UResourceAttributeSet()

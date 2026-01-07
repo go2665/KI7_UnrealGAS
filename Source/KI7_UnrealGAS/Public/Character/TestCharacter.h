@@ -37,6 +37,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void TestRemoveInfiniteEffect();
 
+	UFUNCTION(BlueprintCallable)
+	void TestAbility();
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
@@ -60,6 +63,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Initialize")
 	TSubclassOf<class UGameplayEffect> InitializeEffectClass = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability")
+	TSubclassOf<UGameplayAbility> HasteClass = nullptr;
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Ability")

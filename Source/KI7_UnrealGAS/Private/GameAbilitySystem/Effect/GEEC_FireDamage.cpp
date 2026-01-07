@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "GameAbilitySystem/GEEC_FireDamage.h"
-#include "GameAbilitySystem/ResourceAttributeSet.h"
-#include "GameAbilitySystem/StatusAttributeSet.h"
+#include "GameAbilitySystem/Effect/GEEC_FireDamage.h"
+#include "GameAbilitySystem/AttributeSet/ResourceAttributeSet.h"
+#include "GameAbilitySystem/AttributeSet/StatusAttributeSet.h"
 
 // UGEEC_FireDamage 계산에 필요한 어트리뷰트를 캡처하기 위한 구조체(이 계산이 어디에 영향을 줄것인가)
 struct FFireDamageStatics

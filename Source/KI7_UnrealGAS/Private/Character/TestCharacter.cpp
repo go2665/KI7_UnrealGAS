@@ -3,8 +3,8 @@
 
 #include "Character/TestCharacter.h"
 #include "AbilitySystemComponent.h"
-#include "GameAbilitySystem/ResourceAttributeSet.h"
-#include "GameAbilitySystem/StatusAttributeSet.h"
+#include "GameAbilitySystem/AttributeSet/ResourceAttributeSet.h"
+#include "GameAbilitySystem/AttributeSet/StatusAttributeSet.h"
 #include "Components/WidgetComponent.h"
 #include "Interface/TwinResource.h"
 
@@ -72,6 +72,15 @@ void ATestCharacter::TestRemoveInfiniteEffect()
 	}
 }
 
+void ATestCharacter::TestAbility()
+{
+	if (AbilitySystemComponent && HasteClass)
+	{
+		// 클래스로 어빌리티 발동시키기
+		AbilitySystemComponent->TryActivateAbilityByClass(HasteClass);
+	}
+}
+
 // Called when the game starts or when spawned
 void ATestCharacter::BeginPlay()
 {
@@ -80,6 +89,19 @@ void ATestCharacter::BeginPlay()
 	if (AbilitySystemComponent)
 	{
 		AbilitySystemComponent->InitAbilityActorInfo(this, this);	// 어빌리티 시스템 컴포넌트 초기화
+
+		if (HasteClass)
+		{
+			AbilitySystemComponent->GiveAbility(
+				FGameplayAbilitySpec(
+					HasteClass,		// 어빌리티 클래스
+					1,				// 레벨
+					-1,				// 입력 ID
+					this			// 소스
+				)
+			);
+		}
+
 
 		// 초기화 이후에만 가능
 		FOnGameplayAttributeValueChange& onHealthChange =
