@@ -156,7 +156,7 @@ void ATestCharacter::OnHealthChange(const FOnAttributeChangeData& InData)
 {
 	if (ResourceAttributeSet)
 	{
-		UE_LOG(LogTemp, Log, TEXT("On Health Change : %.1f -> %.1f"), InData.OldValue, InData.NewValue);
+		//UE_LOG(LogTemp, Log, TEXT("On Health Change : %.1f -> %.1f"), InData.OldValue, InData.NewValue);
 		ITwinResource::Execute_UpdateCurrentHealth(BarWigetComponent->GetWidget(), ResourceAttributeSet->GetHealth());
 	}
 }
@@ -173,7 +173,7 @@ void ATestCharacter::OnManaChange(const FOnAttributeChangeData& InData)
 {
 	if (ResourceAttributeSet)
 	{
-		UE_LOG(LogTemp, Log, TEXT("On Mana Change : %.1f -> %.1f"), InData.OldValue, InData.NewValue);
+		//UE_LOG(LogTemp, Log, TEXT("On Mana Change : %.1f -> %.1f"), InData.OldValue, InData.NewValue);
 		ITwinResource::Execute_UpdateCurrentMana(BarWigetComponent->GetWidget(), ResourceAttributeSet->GetMana());
 	}
 }
