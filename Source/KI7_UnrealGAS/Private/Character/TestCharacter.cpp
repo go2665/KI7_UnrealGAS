@@ -5,8 +5,10 @@
 #include "AbilitySystemComponent.h"
 #include "GameAbilitySystem/AttributeSet/ResourceAttributeSet.h"
 #include "GameAbilitySystem/AttributeSet/StatusAttributeSet.h"
+#include "GameAbilitySystem/GameAbilitySystemEnums.h"
 #include "Components/WidgetComponent.h"
 #include "Interface/TwinResource.h"
+#include "EnhancedInputComponent.h"
 
 // Sets default values
 ATestCharacter::ATestCharacter()
@@ -94,10 +96,10 @@ void ATestCharacter::BeginPlay()
 		{
 			AbilitySystemComponent->GiveAbility(
 				FGameplayAbilitySpec(
-					HasteClass,		// 어빌리티 클래스
-					1,				// 레벨
-					-1,				// 입력 ID
-					this			// 소스
+					HasteClass,									// 어빌리티 클래스
+					1,											// 레벨
+					static_cast<int32>(EAbilityInputID::Haste),	// 입력 ID
+					this										// 소스
 				)
 			);
 		}
@@ -172,6 +174,12 @@ void ATestCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(PlayerInputComponent);
+	if (EnhancedInput)
+	{
+		EnhancedInput->BindAction(IA_Ability1, ETriggerEvent::Started, this, &ATestCharacter::OnAbility1Press);
+	}
+
 }
 
 void ATestCharacter::OnHealthChange(const FOnAttributeChangeData& InData)
@@ -205,6 +213,15 @@ void ATestCharacter::OnMaxManaChange(const FOnAttributeChangeData& InData)
 	if (ResourceAttributeSet)
 	{
 		ITwinResource::Execute_UpdateMaxMana(BarWigetComponent->GetWidget(), ResourceAttributeSet->GetMaxMana());
+	}
+}
+
+void ATestCharacter::OnAbility1Press()
+{
+	UE_LOG(LogTemp, Log, TEXT("OnAbility1Press"));
+	if (AbilitySystemComponent)
+	{
+		AbilitySystemComponent->AbilityLocalInputPressed(static_cast<int32>(EAbilityInputID::Haste));
 	}
 }
 
