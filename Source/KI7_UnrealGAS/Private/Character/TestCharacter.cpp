@@ -55,6 +55,7 @@ void ATestCharacter::TestAddInfiniteEffect()
 	{
 		FGameplayEffectContextHandle EffectContext = AbilitySystemComponent->MakeEffectContext();
 		EffectContext.AddInstigator(this, this);
+		//EffectContext.AddHitResult()
 
 		FGameplayEffectSpecHandle SpecHandle = AbilitySystemComponent->MakeOutgoingSpec(
 			TestInfiniteEffectClass, 0, EffectContext);
