@@ -4,5 +4,6 @@ UENUM(BlueprintType)
 enum class EAbilityInputID : uint8
 {
 	Haste,
-	SuperJump
+	SuperJump,
+	ChargingJump
 };
